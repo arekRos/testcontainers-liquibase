@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: elm-service
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+      pool-name: app-hikari-pool-name
+    username: test_user
+    password: test_password
+    url: jdbc:postgresql://${DB_HOST:localhost:5432}/db
+mybatis:
+  mapper-locations: classpath:db/mappers/*.xml

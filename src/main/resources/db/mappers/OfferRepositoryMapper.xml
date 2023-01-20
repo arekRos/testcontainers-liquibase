@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="pl.pretius.testcontainersliquibase.offer.OfferRepository">
+
+    <insert id="saveProducts">
+        INSERT INTO products (product_name, product_price, offer_id) VALUES
+        <foreach collection="offer.products" separator="," item="product">
+            (#{product.productName} , #{product.productPrice}, #{offer.id})
+        </foreach>
+    </insert>
+
+    <resultMap id="OfferResult" autoMapping="true" type="pl.pretius.testcontainersliquibase.offer.Offer">
+        <id column="id" property="id"/>
+        <id column="offer_name" property="offerName"/>
+        <collection property="products" resultMap="ProductResult" columnPrefix="pr_" autoMapping="true"/>
+    </resultMap>
+
+    <resultMap id="ProductResult" autoMapping="true" type="pl.pretius.testcontainersliquibase.offer.Product">
+        <id column="id" property="id"/>
+        <id column="offer_id" property="offerId"/>
+        <id column="product_name" property="productName"/>
+        <id column="product_price" property="productPrice"/>
+    </resultMap>
+
+    <select id="findOfferByOfferName" resultMap="OfferResult">
+        SELECT o.id,
+               o.offer_name,
+               p.id            pr_id,
+               p.offer_id      pr_offer_id,
+               p.product_name  pr_product_name,
+               p.product_price pr_product_price
+        FROM offers o
+                 join products p on o.id = p.offer_id
+        where o.offer_name = #{offerName}
+    </select>
+</mapper>
