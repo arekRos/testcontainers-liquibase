@@ -1,14 +1,12 @@
 version: "3"
 services:
   postgres:
-    image: "postgres"
+    image: "postgres:14-alpine"
     container_name: "postgres"
     environment:
       - POSTGRES_USER=test_user
       - POSTGRES_PASSWORD=test_password
       - POSTGRES_DB=db
     ports:
-      - 5432:5432
-    volumes:
-      - /tmp/postgresql-docker/data:/var/lib/postgresql/data
+      - "5432:5432"
     restart: always

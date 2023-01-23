@@ -12,7 +12,6 @@ interface OfferRepository {
     @Options(useGeneratedKeys = true, keyProperty = "offer.id")
     void save(@Param("offer") Offer offer);
 
-
     void saveProducts(@Param("offer") Offer offer);
 
     Offer findOfferByOfferName(@Param("offerName") String offerName);

@@ -1,7 +1,7 @@
 create table offers
 (
-    id bigserial not null,
-    offer_name  varchar(255)   not null,
+    id         bigserial    not null,
+    offer_name varchar(255) not null,
     primary key (id)
 )
 /

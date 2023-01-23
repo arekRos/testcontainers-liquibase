@@ -28,13 +28,10 @@ public class OfferFacade {
 
         );
 
-        persist(offer);
-        return new OfferShortInfoDto(offer.getOfferName(), offer.countTotalPrice());
-    }
-
-    private void persist(Offer offer) {
         offerRepository.save(offer);
         offerRepository.saveProducts(offer);
+
+        return new OfferShortInfoDto(offer.getOfferName(), offer.countTotalPrice());
     }
 
     @Transactional(readOnly = true)

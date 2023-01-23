@@ -6,7 +6,7 @@ spring:
       pool-name: app-hikari-pool-name
     username: test
     password: test
-    url: jdbc:tc:postgresql:15.1:///test
+    url: jdbc:tc:postgresql:14.1:///test
     driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
 mybatis:
   mapper-locations: classpath:db/mappers/*.xml

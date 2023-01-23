@@ -9,6 +9,7 @@ databaseChangeLog:
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
+
   - changeSet:
       id: 02-alter-offers-with-uqnique-constraint
       author: Arkadiusz Rosloniec
