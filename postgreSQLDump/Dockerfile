@@ -13,4 +13,5 @@ RUN ["/usr/local/bin/docker-entrypoint.sh", "postgres"]
 # final build stage
 FROM postgres:14-alpine
 
+EXPOSE 5432
 COPY --from=dumper /data $PGDATA
